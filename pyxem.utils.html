@@ -1,0 +1,1021 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pyxem.utils package &#8212; pyXem 0.5.1 documentation</title>
+    <link rel="stylesheet" href="_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="_static/custom.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="./" src="_static/documentation_options.js"></script>
+    <script type="text/javascript" src="_static/jquery.js"></script>
+    <script type="text/javascript" src="_static/underscore.js"></script>
+    <script type="text/javascript" src="_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="genindex.html" />
+    <link rel="search" title="Search" href="search.html" />
+    <link rel="prev" title="pyxem.signals package" href="pyxem.signals.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="index.html">
+          pyXem</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.5.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul class="current">
+<li class="toctree-l1"><a class="reference internal" href="introduction.html">Electron Diffraction - Signal Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="post_facto_imaging.html">Post-facto Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="contributing.html">Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="bibliography.html">Bibliography</a></li>
+<li class="toctree-l1 current"><a class="reference internal" href="modules.html">pyxem</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"><ul>
+<li><a class="reference internal" href="#">pyxem.utils package</a><ul>
+<li><a class="reference internal" href="#submodules">Submodules</a></li>
+<li><a class="reference internal" href="#module-pyxem.utils.atomic_scattering_params">pyxem.utils.atomic_scattering_params module</a></li>
+<li><a class="reference internal" href="#module-pyxem.utils.expt_utils">pyxem.utils.expt_utils module</a></li>
+<li><a class="reference internal" href="#module-pyxem.utils.indexation_utils">pyxem.utils.indexation_utils module</a></li>
+<li><a class="reference internal" href="#module-pyxem.utils.orientation_utils">pyxem.utils.orientation_utils module</a></li>
+<li><a class="reference internal" href="#module-pyxem.utils.peakfinder2D_gui">pyxem.utils.peakfinder2D_gui module</a></li>
+<li><a class="reference internal" href="#module-pyxem.utils.peakfinders2D">pyxem.utils.peakfinders2D module</a></li>
+<li><a class="reference internal" href="#module-pyxem.utils.plot">pyxem.utils.plot module</a></li>
+<li><a class="reference internal" href="#module-pyxem.utils.scattering_params">pyxem.utils.scattering_params module</a></li>
+<li><a class="reference internal" href="#module-pyxem.utils.sim_utils">pyxem.utils.sim_utils module</a></li>
+<li><a class="reference internal" href="#module-pyxem.utils.vdf_utils">pyxem.utils.vdf_utils module</a></li>
+<li><a class="reference internal" href="#module-pyxem.utils.vector_utils">pyxem.utils.vector_utils module</a></li>
+<li><a class="reference internal" href="#module-pyxem.utils">Module contents</a></li>
+</ul>
+</li>
+</ul>
+</ul>
+</li>
+              
+            
+            
+              
+                
+  <li>
+    <a href="pyxem.signals.html" title="Previous Chapter: pyxem.signals package"><span class="glyphicon glyphicon-chevron-left visible-sm"></span><span class="hidden-sm hidden-tablet">&laquo; pyxem.signals package</span>
+    </a>
+  </li>
+              
+            
+            
+            
+            
+              <li class="hidden-sm">
+<div id="sourcelink">
+  <a href="_sources/pyxem.utils.rst.txt"
+     rel="nofollow">Source</a>
+</div></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <div class="section" id="pyxem-utils-package">
+<h1>pyxem.utils package<a class="headerlink" href="#pyxem-utils-package" title="Permalink to this headline">¶</a></h1>
+<div class="section" id="submodules">
+<h2>Submodules<a class="headerlink" href="#submodules" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyxem.utils.atomic_scattering_params">
+<span id="pyxem-utils-atomic-scattering-params-module"></span><h2>pyxem.utils.atomic_scattering_params module<a class="headerlink" href="#module-pyxem.utils.atomic_scattering_params" title="Permalink to this headline">¶</a></h2>
+</div>
+<div class="section" id="module-pyxem.utils.expt_utils">
+<span id="pyxem-utils-expt-utils-module"></span><h2>pyxem.utils.expt_utils module<a class="headerlink" href="#module-pyxem.utils.expt_utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.affine_transformation">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">affine_transformation</code><span class="sig-paren">(</span><em>z</em>, <em>matrix</em>, <em>order</em>, <em>**kwargs</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#affine_transformation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.affine_transformation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply an affine transformation to a 2-dimensional array.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>z</strong> (<em>np.array</em>) – Array to be transformed</li>
+<li><strong>matrix</strong> (<em>np.array</em>) – 3x3 numpy array specifying the affine transformation to be applied.</li>
+<li><strong>order</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Interpolation order.</li>
+<li><strong>kwargs</strong> – To be passed to skimage.warp</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>trans</strong> – Affine transformed diffraction pattern.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.circular_mask">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">circular_mask</code><span class="sig-paren">(</span><em>shape</em>, <em>radius</em>, <em>center=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#circular_mask"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.circular_mask" title="Permalink to this definition">¶</a></dt>
+<dd><p>Produces a mask of radius ‘r’ centered on ‘center’ of shape ‘shape’.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>shape</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a>) – </li>
+<li><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – </li>
+<li><strong>center</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a><em> (</em><em>optional</em><em>)</em>) – Default: (0, 0)</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">np.ndarray</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.find_beam_offset_cross_correlation">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">find_beam_offset_cross_correlation</code><span class="sig-paren">(</span><em>z</em>, <em>radius_start=4</em>, <em>radius_finish=8</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#find_beam_offset_cross_correlation"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.find_beam_offset_cross_correlation" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to centre the direct beam centre by a cross-correlation algorithm.
+The shift is calculated relative to an circle perimeter. The circle can be
+refined across a range of radii during the centring procedure to improve
+performance in regions where the direct beam size changes,
+e.g. during sample thickness variation.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>radius_start</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The lower bound for the radius of the central disc to be used in the alignment</li>
+<li><strong>radius_finish</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The upper bounds for the radius of the central disc to be used in the alignment</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>shift</strong> – np.array containing offset (from center) of the direct beam positon.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">np.array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.gain_normalise">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">gain_normalise</code><span class="sig-paren">(</span><em>z</em>, <em>dref</em>, <em>bref</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#gain_normalise"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.gain_normalise" title="Permalink to this definition">¶</a></dt>
+<dd><p>Apply gain normalization to experimentally acquired electron
+diffraction pattern.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>dref</strong> (<a class="reference internal" href="pyxem.signals.html#pyxem.signals.electron_diffraction.ElectronDiffraction" title="pyxem.signals.electron_diffraction.ElectronDiffraction"><em>ElectronDiffraction</em></a>) – Dark reference image.</li>
+<li><strong>bref</strong> (<a class="reference internal" href="pyxem.signals.html#pyxem.signals.electron_diffraction.ElectronDiffraction" title="pyxem.signals.electron_diffraction.ElectronDiffraction"><em>ElectronDiffraction</em></a>) – Flat-field bright reference image.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Gain normalized diffraction pattern</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.peaks_as_gvectors">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">peaks_as_gvectors</code><span class="sig-paren">(</span><em>z</em>, <em>center</em>, <em>calibration</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#peaks_as_gvectors"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.peaks_as_gvectors" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.radial_average">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">radial_average</code><span class="sig-paren">(</span><em>z</em>, <em>cython=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#radial_average"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.radial_average" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculate the radial profile by azimuthal averaging about a specified
+center.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>cython=False</strong> – Set to False if cython needs to be avoided. If cythonized option is not
+not avaliable the behaviour is equivilant to cython == False</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>radial_profile</strong> – Radial profile of the diffraction pattern.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.reference_circle">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">reference_circle</code><span class="sig-paren">(</span><em>coords</em>, <em>dimX</em>, <em>dimY</em>, <em>radius</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#reference_circle"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.reference_circle" title="Permalink to this definition">¶</a></dt>
+<dd><p>Draw the perimeter of an circle at a given position
+in the diffraction pattern (e.g. to provide a reference for
+finding the direct beam center).</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>coords</strong> (<em>np.array size n</em><em>,</em><em>2</em>) – size n,2 array of coordinates to draw the circle.</li>
+<li><strong>dimX</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – first dimension of the diffraction pattern (size)</li>
+<li><strong>dimY</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – second dimension of the diffraction pattern (size)</li>
+<li><strong>radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – radius of the circle to be drawn</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>img</strong> – np.array containing the circle drawn at the position given in the coordinates.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">np.array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.regional_filter">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">regional_filter</code><span class="sig-paren">(</span><em>z</em>, <em>h</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#regional_filter"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.regional_filter" title="Permalink to this definition">¶</a></dt>
+<dd><p>Perform a h-dome regional filtering of the an image for background
+subtraction.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>h</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – h-dome cutoff value.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"></td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body">h-dome subtracted image as np.array</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.regional_flattener">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">regional_flattener</code><span class="sig-paren">(</span><em>z</em>, <em>h</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#regional_flattener"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.regional_flattener" title="Permalink to this definition">¶</a></dt>
+<dd><p>Localised erosion of the image ‘z’ for features below a value ‘h’</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.remove_dead">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">remove_dead</code><span class="sig-paren">(</span><em>z</em>, <em>deadpixels</em>, <em>deadvalue='average'</em>, <em>d=1</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#remove_dead"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.remove_dead" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove dead pixels from experimental electron diffraction patterns.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>deadpixels</strong> (<em>array</em>) – Array containing the array indices of dead pixels in the diffraction
+pattern.</li>
+<li><strong>deadvalue</strong> (<em>string</em>) – <dl class="docutils">
+<dt>Specify how deadpixels should be treated, options are;</dt>
+<dd>’average’: takes the average of adjacent pixels
+‘nan’:  sets the dead pixel to nan</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>img</strong> – Array containing the diffraction pattern with dead pixels removed.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.reproject_polar">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">reproject_polar</code><span class="sig-paren">(</span><em>z</em>, <em>origin=None</em>, <em>jacobian=False</em>, <em>dr=1</em>, <em>dt=None</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#reproject_polar"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.reproject_polar" title="Permalink to this definition">¶</a></dt>
+<dd><p>Reprojects a 2D diffraction pattern into a polar coordinate system.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>origin</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#tuple" title="(in Python v3.7)"><em>tuple</em></a>) – The coordinate (x0, y0) of the image center, relative to bottom-left. If
+‘None’defaults to</li>
+<li><strong>Jacobian</strong> (<em>boolean</em>) – Include <code class="docutils literal notranslate"><span class="pre">r</span></code> intensity scaling in the coordinate transform.
+This should be included to account for the changing pixel size that
+occurs during the transform.</li>
+<li><strong>dr</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Radial coordinate spacing for the grid interpolation
+tests show that there is not much point in going below 0.5</li>
+<li><strong>dt</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Angular coordinate spacing (in radians)
+if <code class="docutils literal notranslate"><span class="pre">dt=None</span></code>, dt will be set such that the number of theta values
+is equal to the maximum value between the height or the width of
+the image.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>output</strong> – The polar image (r, theta)</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">2D np.array</p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Adapted from: PyAbel, www.github.com/PyAbel/PyAbel</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.subtract_background_dog">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">subtract_background_dog</code><span class="sig-paren">(</span><em>z</em>, <em>sigma_min</em>, <em>sigma_max</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#subtract_background_dog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.subtract_background_dog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Difference of gaussians method for background removal.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>sigma_max</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Large gaussian blur sigma.</li>
+<li><strong>sigma_min</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Small gaussian blur sigma.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Denoised diffraction pattern as np.array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.subtract_background_median">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">subtract_background_median</code><span class="sig-paren">(</span><em>z</em>, <em>footprint=19</em>, <em>implementation='scipy'</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#subtract_background_median"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.subtract_background_median" title="Permalink to this definition">¶</a></dt>
+<dd><p>Remove background using a median filter.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>footprint</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – size of the window that is convoluted with the array to determine
+the median. Should be large enough that it is about 3x as big as the
+size of the peaks.</li>
+<li><strong>implementation</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#str" title="(in Python v3.7)"><em>str</em></a>) – One of ‘scipy’, ‘skimage’. Skimage is much faster, but it messes with
+the data format. The scipy implementation is safer, but slower.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">Pattern with background subtracted as np.array</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.expt_utils.subtract_reference">
+<code class="descclassname">pyxem.utils.expt_utils.</code><code class="descname">subtract_reference</code><span class="sig-paren">(</span><em>z</em>, <em>bg</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/expt_utils.html#subtract_reference"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.expt_utils.subtract_reference" title="Permalink to this definition">¶</a></dt>
+<dd><p>Subtracts background using a user-defined background pattern.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>bg</strong> (<em>array</em>) – User-defined diffraction pattern to be subtracted as background.</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyxem.utils.indexation_utils">
+<span id="pyxem-utils-indexation-utils-module"></span><h2>pyxem.utils.indexation_utils module<a class="headerlink" href="#module-pyxem.utils.indexation_utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyxem.utils.indexation_utils.index_magnitudes">
+<code class="descclassname">pyxem.utils.indexation_utils.</code><code class="descname">index_magnitudes</code><span class="sig-paren">(</span><em>x</em>, <em>simulation</em>, <em>tolerance</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/indexation_utils.html#index_magnitudes"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.indexation_utils.index_magnitudes" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-pyxem.utils.orientation_utils">
+<span id="pyxem-utils-orientation-utils-module"></span><h2>pyxem.utils.orientation_utils module<a class="headerlink" href="#module-pyxem.utils.orientation_utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyxem.utils.orientation_utils.build_linear_grid_in_euler">
+<code class="descclassname">pyxem.utils.orientation_utils.</code><code class="descname">build_linear_grid_in_euler</code><span class="sig-paren">(</span><em>alpha</em>, <em>beta</em>, <em>gamma</em>, <em>width</em>, <em>resolution</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/orientation_utils.html#build_linear_grid_in_euler"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.orientation_utils.build_linear_grid_in_euler" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns tuples between (alpha,beta,gamma) and
+(alpha,beta,gamma) -+ width at steps of resolution. Each
+angle increased incrementaly. Depending on width and resolution
+the tuple (alpha,beta,gamma) may not be included</p>
+<p>alpha,beta,gamma: Lower angles (0-90,0-180,0-90)
+width           : gives the distance to the min/max. ie) from center-width to center+width
+resolution      : gives the size of the steps</p>
+<p>list: rotation list</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.orientation_utils.load_DiffractionLibrary">
+<code class="descclassname">pyxem.utils.orientation_utils.</code><code class="descname">load_DiffractionLibrary</code><span class="sig-paren">(</span><em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/orientation_utils.html#load_DiffractionLibrary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.orientation_utils.load_DiffractionLibrary" title="Permalink to this definition">¶</a></dt>
+<dd><p>unpickles the DiffractionLibrary. Note risk.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.orientation_utils.save_DiffractionLibrary">
+<code class="descclassname">pyxem.utils.orientation_utils.</code><code class="descname">save_DiffractionLibrary</code><span class="sig-paren">(</span><em>library</em>, <em>filename</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/orientation_utils.html#save_DiffractionLibrary"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.orientation_utils.save_DiffractionLibrary" title="Permalink to this definition">¶</a></dt>
+<dd><p>pickles (saves) the DiffractionLibrary</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyxem.utils.peakfinder2D_gui">
+<span id="pyxem-utils-peakfinder2d-gui-module"></span><h2>pyxem.utils.peakfinder2D_gui module<a class="headerlink" href="#module-pyxem.utils.peakfinder2D_gui" title="Permalink to this headline">¶</a></h2>
+<dl class="class">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIBase">
+<em class="property">class </em><code class="descclassname">pyxem.utils.peakfinder2D_gui.</code><code class="descname">PeakFinderUIBase</code><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIBase"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIBase" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference external" href="https://docs.python.org/3/library/functions.html#object" title="(in Python v3.7)"><code class="xref py py-class docutils literal notranslate"><span class="pre">object</span></code></a></p>
+<dl class="attribute">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIBase.current_method">
+<code class="descname">current_method</code><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIBase.current_method" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIBase.get_data">
+<code class="descname">get_data</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIBase.get_data"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIBase.get_data" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIBase.get_peaks">
+<code class="descname">get_peaks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIBase.get_peaks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIBase.get_peaks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIBase.init_ui">
+<code class="descname">init_ui</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIBase.init_ui"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIBase.init_ui" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIBase.interactive">
+<code class="descname">interactive</code><span class="sig-paren">(</span><em>signal</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIBase.interactive"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIBase.interactive" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+<dl class="class">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW">
+<em class="property">class </em><code class="descclassname">pyxem.utils.peakfinder2D_gui.</code><code class="descname">PeakFinderUIIPYW</code><span class="sig-paren">(</span><em>imshow_kwargs={}</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW" title="Permalink to this definition">¶</a></dt>
+<dd><p>Bases: <a class="reference internal" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIBase" title="pyxem.utils.peakfinder2D_gui.PeakFinderUIBase"><code class="xref py py-class docutils literal notranslate"><span class="pre">pyxem.utils.peakfinder2D_gui.PeakFinderUIBase</span></code></a></p>
+<p>Find peaks using a Jupyter notebook-based user interface</p>
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.create_choices_widget">
+<code class="descname">create_choices_widget</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW.create_choices_widget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.create_choices_widget" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.create_navigator">
+<code class="descname">create_navigator</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW.create_navigator"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.create_navigator" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.create_navigator_1d">
+<code class="descname">create_navigator_1d</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW.create_navigator_1d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.create_navigator_1d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.create_navigator_2d">
+<code class="descname">create_navigator_2d</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW.create_navigator_2d"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.create_navigator_2d" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.create_param_widget">
+<code class="descname">create_param_widget</code><span class="sig-paren">(</span><em>param</em>, <em>value</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW.create_param_widget"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.create_param_widget" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.create_param_widgets">
+<code class="descname">create_param_widgets</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW.create_param_widgets"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.create_param_widgets" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.init_ui">
+<code class="descname">init_ui</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW.init_ui"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.init_ui" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.plot">
+<code class="descname">plot</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW.plot"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.plot" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.plot_image">
+<code class="descname">plot_image</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW.plot_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.plot_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.plot_peaks">
+<code class="descname">plot_peaks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW.plot_peaks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.plot_peaks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.replot_image">
+<code class="descname">replot_image</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW.replot_image"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.replot_image" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="method">
+<dt id="pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.replot_peaks">
+<code class="descname">replot_peaks</code><span class="sig-paren">(</span><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinder2D_gui.html#PeakFinderUIIPYW.replot_peaks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinder2D_gui.PeakFinderUIIPYW.replot_peaks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyxem.utils.peakfinders2D">
+<span id="pyxem-utils-peakfinders2d-module"></span><h2>pyxem.utils.peakfinders2D module<a class="headerlink" href="#module-pyxem.utils.peakfinders2D" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyxem.utils.peakfinders2D.clean_peaks">
+<code class="descclassname">pyxem.utils.peakfinders2D.</code><code class="descname">clean_peaks</code><span class="sig-paren">(</span><em>peaks</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinders2D.html#clean_peaks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinders2D.clean_peaks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.peakfinders2D.find_peaks_dog">
+<code class="descclassname">pyxem.utils.peakfinders2D.</code><code class="descname">find_peaks_dog</code><span class="sig-paren">(</span><em>z</em>, <em>min_sigma=1.0</em>, <em>max_sigma=50.0</em>, <em>sigma_ratio=1.6</em>, <em>threshold=0.2</em>, <em>overlap=0.5</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinders2D.html#find_peaks_dog"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinders2D.find_peaks_dog" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds peaks via the difference of Gaussian Matrices method from
+<cite>scikit-image</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>z</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.15)"><em>numpy.ndarray</em></a>) – 2-d array of intensities</li>
+<li><strong>min_sigma</strong><strong>, </strong><strong>max_sigma</strong><strong>, </strong><strong>sigma_ratio</strong><strong>, </strong><strong>threshold</strong><strong>, </strong><strong>overlap</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Additional parameters to be passed to the algorithm. See <cite>blob_dog</cite>
+documentation for details:
+<a class="reference external" href="http://scikit-image.org/docs/dev/api/skimage.feature.html#blob-dog">http://scikit-image.org/docs/dev/api/skimage.feature.html#blob-dog</a></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">Array of peak coordinates of shape <cite>(n_peaks, 2)</cite></p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.15)">numpy.ndarray</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>While highly effective at finding even very faint peaks, this method is
+sensitive to fluctuations in intensity near the edges of the image.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.peakfinders2D.find_peaks_log">
+<code class="descclassname">pyxem.utils.peakfinders2D.</code><code class="descname">find_peaks_log</code><span class="sig-paren">(</span><em>z</em>, <em>min_sigma=1.0</em>, <em>max_sigma=50.0</em>, <em>num_sigma=10.0</em>, <em>threshold=0.2</em>, <em>overlap=0.5</em>, <em>log_scale=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinders2D.html#find_peaks_log"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinders2D.find_peaks_log" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds peaks via the Laplacian of Gaussian Matrices method from
+<cite>scikit-image</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>z</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.15)"><em>numpy.ndarray</em></a>) – Array of image intensities.</li>
+<li><strong>min_sigma</strong><strong>, </strong><strong>max_sigma</strong><strong>, </strong><strong>num_sigma</strong><strong>, </strong><strong>threshold</strong><strong>, </strong><strong>overlap</strong><strong>, </strong><strong>log_scale</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Additional parameters to be passed to the algorithm. See
+<cite>blob_log</cite> documentation for details:
+<a class="reference external" href="http://scikit-image.org/docs/dev/api/skimage.feature.html#blob-log">http://scikit-image.org/docs/dev/api/skimage.feature.html#blob-log</a></li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">(n_peaks, 2)
+Array of peak coordinates.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.15)">numpy.ndarray</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.peakfinders2D.find_peaks_regionprops">
+<code class="descclassname">pyxem.utils.peakfinders2D.</code><code class="descname">find_peaks_regionprops</code><span class="sig-paren">(</span><em>z</em>, <em>min_sigma=4</em>, <em>max_sigma=5</em>, <em>threshold=1</em>, <em>min_size=50</em>, <em>return_props=False</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinders2D.html#find_peaks_regionprops"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinders2D.find_peaks_regionprops" title="Permalink to this definition">¶</a></dt>
+<dd><p>Finds peaks using regionprops.
+Uses the difference of two gaussian convolutions to separate signal from
+background, and then uses the skimage.measure.regionprops function to find
+connected islands (peaks). Small blobs can be rejected using <cite>min_size</cite>.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>z</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.15)"><em>numpy.ndarray</em></a>) – Array of image intensities.</li>
+<li><strong>min_sigma</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Standard deviation for the minimum gaussian convolution</li>
+<li><strong>max_sigma</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Standard deviation for the maximum gaussian convolution</li>
+<li><strong>threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a><em>, </em><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Minimum difference in intensity</li>
+<li><strong>min_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Minimum size in pixels of blob</li>
+<li><strong>return_props</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#bool" title="(in Python v3.7)"><em>bool</em></a>) – Return skimage.measure.regionprops</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">(n_peaks, 2)
+Array of peak coordinates.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.15)">numpy.ndarray</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.peakfinders2D.find_peaks_stat">
+<code class="descclassname">pyxem.utils.peakfinders2D.</code><code class="descname">find_peaks_stat</code><span class="sig-paren">(</span><em>z</em>, <em>alpha=1.0</em>, <em>window_radius=10</em>, <em>convergence_ratio=0.05</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinders2D.html#find_peaks_stat"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinders2D.find_peaks_stat" title="Permalink to this definition">¶</a></dt>
+<dd><p>Locate positive peaks in an image based on statistical refinement and
+difference with respect to mean intensity.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>z</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.15)"><em>numpy.ndarray</em></a>) – Array of image intensities.</li>
+<li><strong>alpha</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Only maxima above <cite>alpha * sigma</cite> are found, where <cite>sigma</cite> is the
+local, rolling standard deviation of the image.</li>
+<li><strong>window_radius</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The pixel radius of the circular window for the calculation of the
+rolling mean and standard deviation.</li>
+<li><strong>convergence_ratio</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The algorithm will stop finding peaks when the proportion of new peaks
+being found is less than <cite>convergence_ratio</cite>.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">(n_peaks, 2)
+Array of peak coordinates.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.15)">numpy.ndarray</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Implemented as described in the PhD thesis of Thomas White (2009) the
+algorithm was developed by Gordon Ball during a summer project in
+Cambridge.
+This version by Ben Martineau (2016), with minor modifications to the
+original where methods were ambiguous or unclear.</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.peakfinders2D.find_peaks_zaefferer">
+<code class="descclassname">pyxem.utils.peakfinders2D.</code><code class="descname">find_peaks_zaefferer</code><span class="sig-paren">(</span><em>z</em>, <em>grad_threshold=0.1</em>, <em>window_size=40</em>, <em>distance_cutoff=50.0</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/peakfinders2D.html#find_peaks_zaefferer"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.peakfinders2D.find_peaks_zaefferer" title="Permalink to this definition">¶</a></dt>
+<dd><p>Method to locate positive peaks in an image based on gradient
+thresholding and subsequent refinement within masked regions.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>z</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.15)"><em>numpy.ndarray</em></a>) – Matrix of image intensities.</li>
+<li><strong>grad_threshold</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The minimum gradient required to begin a peak search.</li>
+<li><strong>window_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – The size of the square window within which a peak search is
+conducted. If odd, will round down to even.</li>
+<li><strong>distance_cutoff</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The maximum distance a peak may be from the initial
+high-gradient point.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>peaks</strong> – (n_peaks, 2)
+Peak pixel coordinates.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.15)">numpy.ndarray</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Notes</p>
+<p>Implemented as described in Zaefferer “New developments of computer-aided
+crystallographic analysis in transmission electron microscopy” J. Ap. Cryst.
+This version by Ben Martineau (2016)</p>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyxem.utils.plot">
+<span id="pyxem-utils-plot-module"></span><h2>pyxem.utils.plot module<a class="headerlink" href="#module-pyxem.utils.plot" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyxem.utils.plot.generate_marker_inputs_from_peaks">
+<code class="descclassname">pyxem.utils.plot.</code><code class="descname">generate_marker_inputs_from_peaks</code><span class="sig-paren">(</span><em>peaks</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/plot.html#generate_marker_inputs_from_peaks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.plot.generate_marker_inputs_from_peaks" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a peaks (defined in 2D) object from a STEM (more than 1 image) scan
+and returns markers.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>peaks</strong> (<code class="xref py py-class docutils literal notranslate"><span class="pre">pyxem.diffraction_vectors.DiffractionVectors</span></code>) – Identifies peaks in a diffraction signal.</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">Example</p>
+<p>How to get these onto images:</p>
+<div class="highlight-default notranslate"><div class="highlight"><pre><span></span><span class="n">mmx</span><span class="p">,</span><span class="n">mmy</span> <span class="o">=</span> <span class="n">generate_marker_inputs_from_peaks</span><span class="p">(</span><span class="n">found_peaks</span><span class="p">)</span>
+<span class="n">dp</span><span class="o">.</span><span class="n">plot</span><span class="p">(</span><span class="n">cmap</span><span class="o">=</span><span class="s1">&#39;viridis&#39;</span><span class="p">)</span>
+<span class="k">for</span> <span class="n">mx</span><span class="p">,</span><span class="n">my</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="n">mmx</span><span class="p">,</span><span class="n">mmy</span><span class="p">):</span>
+    <span class="n">m</span> <span class="o">=</span> <span class="n">hs</span><span class="o">.</span><span class="n">markers</span><span class="o">.</span><span class="n">point</span><span class="p">(</span><span class="n">x</span><span class="o">=</span><span class="n">mx</span><span class="p">,</span><span class="n">y</span><span class="o">=</span><span class="n">my</span><span class="p">,</span><span class="n">color</span><span class="o">=</span><span class="s1">&#39;red&#39;</span><span class="p">,</span><span class="n">marker</span><span class="o">=</span><span class="s1">&#39;x&#39;</span><span class="p">)</span>
+    <span class="n">dp</span><span class="o">.</span><span class="n">add_marker</span><span class="p">(</span><span class="n">m</span><span class="p">,</span><span class="n">plot_marker</span><span class="o">=</span><span class="kc">True</span><span class="p">,</span><span class="n">permanent</span><span class="o">=</span><span class="kc">False</span><span class="p">)</span>
+</pre></div>
+</div>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyxem.utils.scattering_params">
+<span id="pyxem-utils-scattering-params-module"></span><h2>pyxem.utils.scattering_params module<a class="headerlink" href="#module-pyxem.utils.scattering_params" title="Permalink to this headline">¶</a></h2>
+<p>Scattering Paramaters as Tabulated in
+“Advanced Computing in Electron Microscopy - Second Edition (2010) - Earl.J.Kirkland”
+ISBN 978-1-4419-6532-5
+Pages 253-260 Appendix C</p>
+<p>This transcription comes from scikit-ued (MIT license) - <a class="reference external" href="https://pypi.python.org/pypi/scikit-ued">https://pypi.python.org/pypi/scikit-ued</a></p>
+</div>
+<div class="section" id="module-pyxem.utils.sim_utils">
+<span id="pyxem-utils-sim-utils-module"></span><h2>pyxem.utils.sim_utils module<a class="headerlink" href="#module-pyxem.utils.sim_utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyxem.utils.sim_utils.get_electron_wavelength">
+<code class="descclassname">pyxem.utils.sim_utils.</code><code class="descname">get_electron_wavelength</code><span class="sig-paren">(</span><em>accelerating_voltage</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/sim_utils.html#get_electron_wavelength"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.sim_utils.get_electron_wavelength" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the (relativistic) electron wavelength in Angstroms
+for a given accelerating voltage in kV.</p>
+<p>Evaluates</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>accelerating_voltage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The accelerating voltage in kV.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>wavelength</strong> – The relativistic electron wavelength in Angstroms.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.sim_utils.get_interaction_constant">
+<code class="descclassname">pyxem.utils.sim_utils.</code><code class="descname">get_interaction_constant</code><span class="sig-paren">(</span><em>accelerating_voltage</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/sim_utils.html#get_interaction_constant"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.sim_utils.get_interaction_constant" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates the interaction constant, sigma, for a given
+acelerating voltage.</p>
+<p>Evaluates</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><strong>accelerating_voltage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – The accelerating voltage in V.</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><strong>sigma</strong> – The relativistic electron wavelength in m.</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.sim_utils.get_kinematical_intensities">
+<code class="descclassname">pyxem.utils.sim_utils.</code><code class="descname">get_kinematical_intensities</code><span class="sig-paren">(</span><em>structure</em>, <em>g_indices</em>, <em>g_hkls</em>, <em>excitation_error</em>, <em>maximum_excitation_error</em>, <em>debye_waller_factors</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/sim_utils.html#get_kinematical_intensities"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.sim_utils.get_kinematical_intensities" title="Permalink to this definition">¶</a></dt>
+<dd><p>Calculates peak intensities.</p>
+<p>The peak intensity is a combination of the structure factor for a given
+peak and the position the Ewald sphere intersects the relrod. In this
+implementation, the intensity scales linearly with proximity.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>structure</strong> (<em>Structure</em>) – The structure for which to derive the structure factors.</li>
+<li><strong>indices</strong> (<em>array-like</em>) – The fractional coordinates of the peaks for which to calculate the
+structure factor.</li>
+<li><strong>proximities</strong> (<em>array-like</em>) – The distances between the Ewald sphere and the peak centres.</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>peak_intensities</strong> – The intensities of the peaks.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last">array-like</p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.sim_utils.get_unique_families">
+<code class="descclassname">pyxem.utils.sim_utils.</code><code class="descname">get_unique_families</code><span class="sig-paren">(</span><em>hkls</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/sim_utils.html#get_unique_families"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.sim_utils.get_unique_families" title="Permalink to this definition">¶</a></dt>
+<dd><p>Returns unique families of Miller indices, which must be permutations
+of each other.</p>
+<dl class="docutils">
+<dt>Args:</dt>
+<dd>hkls ([h, k, l]): List of Miller indices.</dd>
+<dt>Returns:</dt>
+<dd>{hkl: multiplicity}: A dict with unique hkl and multiplicity.</dd>
+</dl>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.sim_utils.peaks_from_best_template">
+<code class="descclassname">pyxem.utils.sim_utils.</code><code class="descname">peaks_from_best_template</code><span class="sig-paren">(</span><em>single_match_result</em>, <em>phase</em>, <em>library</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/sim_utils.html#peaks_from_best_template"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.sim_utils.peaks_from_best_template" title="Permalink to this definition">¶</a></dt>
+<dd><p>Takes a match_result object and return the associated peaks, to be used with
+in combination with map.</p>
+<p>Example : peaks= match_results.map(peaks_from_best_template,phase=phase,library=library)</p>
+<dl class="docutils">
+<dt>phase <span class="classifier-delimiter">:</span> <span class="classifier">list</span></dt>
+<dd>of keys to library, should be the same as passed to IndexationGenerator.correlate()</dd>
+</dl>
+<p>library : nested dictionary containing keys of [phase][rotation]</p>
+</dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.sim_utils.simulate_kinematic_scattering">
+<code class="descclassname">pyxem.utils.sim_utils.</code><code class="descname">simulate_kinematic_scattering</code><span class="sig-paren">(</span><em>atomic_coordinates</em>, <em>element</em>, <em>accelerating_voltage</em>, <em>simulation_size=256</em>, <em>max_k=1.5</em>, <em>illumination='plane_wave'</em>, <em>sigma=20</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/sim_utils.html#simulate_kinematic_scattering"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.sim_utils.simulate_kinematic_scattering" title="Permalink to this definition">¶</a></dt>
+<dd><p>Simulate electron scattering from arrangement of atoms comprising one
+elemental species.</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>atomic_coordinates</strong> (<em>array</em>) – Array specifying atomic coordinates in structure.</li>
+<li><strong>element</strong> (<em>string</em>) – Element symbol, e.g. “C”.</li>
+<li><strong>accelerating_voltage</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Accelerating voltage in keV.</li>
+<li><strong>simulation_size</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#int" title="(in Python v3.7)"><em>int</em></a>) – Simulation size, n, specifies the n x n array size for
+the simulation calculation.</li>
+<li><strong>max_k</strong> (<a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)"><em>float</em></a>) – Maximum scattering vector magnitude in reciprocal angstroms.</li>
+<li><strong>= string</strong> (<em>illumination</em>) – Either ‘plane_wave’ or ‘gaussian_probe’ illumination</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first"><strong>simulation</strong> – ElectronDiffraction simulation.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference internal" href="pyxem.signals.html#pyxem.signals.electron_diffraction.ElectronDiffraction" title="pyxem.signals.electron_diffraction.ElectronDiffraction">ElectronDiffraction</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+</dd></dl>
+
+</div>
+<div class="section" id="module-pyxem.utils.vdf_utils">
+<span id="pyxem-utils-vdf-utils-module"></span><h2>pyxem.utils.vdf_utils module<a class="headerlink" href="#module-pyxem.utils.vdf_utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyxem.utils.vdf_utils.normalize_vdf">
+<code class="descclassname">pyxem.utils.vdf_utils.</code><code class="descname">normalize_vdf</code><span class="sig-paren">(</span><em>im</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/vdf_utils.html#normalize_vdf"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.vdf_utils.normalize_vdf" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-pyxem.utils.vector_utils">
+<span id="pyxem-utils-vector-utils-module"></span><h2>pyxem.utils.vector_utils module<a class="headerlink" href="#module-pyxem.utils.vector_utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyxem.utils.vector_utils.calculate_norms">
+<code class="descclassname">pyxem.utils.vector_utils.</code><code class="descname">calculate_norms</code><span class="sig-paren">(</span><em>z</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/vector_utils.html#calculate_norms"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.vector_utils.calculate_norms" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.vector_utils.calculate_norms_ragged">
+<code class="descclassname">pyxem.utils.vector_utils.</code><code class="descname">calculate_norms_ragged</code><span class="sig-paren">(</span><em>z</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/vector_utils.html#calculate_norms_ragged"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.vector_utils.calculate_norms_ragged" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.vector_utils.get_indices_from_distance_matrix">
+<code class="descclassname">pyxem.utils.vector_utils.</code><code class="descname">get_indices_from_distance_matrix</code><span class="sig-paren">(</span><em>distances</em>, <em>distance_threshold</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/vector_utils.html#get_indices_from_distance_matrix"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.vector_utils.get_indices_from_distance_matrix" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+<dl class="function">
+<dt id="pyxem.utils.vector_utils.get_npeaks">
+<code class="descclassname">pyxem.utils.vector_utils.</code><code class="descname">get_npeaks</code><span class="sig-paren">(</span><em>found_peaks</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils/vector_utils.html#get_npeaks"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.vector_utils.get_npeaks" title="Permalink to this definition">¶</a></dt>
+<dd></dd></dl>
+
+</div>
+<div class="section" id="module-pyxem.utils">
+<span id="module-contents"></span><h2>Module contents<a class="headerlink" href="#module-pyxem.utils" title="Permalink to this headline">¶</a></h2>
+<dl class="function">
+<dt id="pyxem.utils.correlate">
+<code class="descclassname">pyxem.utils.</code><code class="descname">correlate</code><span class="sig-paren">(</span><em>image</em>, <em>pattern_dictionary</em><span class="sig-paren">)</span><a class="reference internal" href="_modules/pyxem/utils.html#correlate"><span class="viewcode-link">[source]</span></a><a class="headerlink" href="#pyxem.utils.correlate" title="Permalink to this definition">¶</a></dt>
+<dd><p>The correlation between a diffraction pattern and a simulation.</p>
+<p>Calculated using</p>
+<div class="math notranslate nohighlight">
+\[\frac{\sum_{j=1}^m P(x_j, y_j) T(x_j, y_j)}{\sqrt{\sum_{j=1}^m T^2(x_j, y_j)}}\]</div>
+<p>for T a template and P an experimental pattern</p>
+<table class="docutils field-list" frame="void" rules="none">
+<col class="field-name" />
+<col class="field-body" />
+<tbody valign="top">
+<tr class="field-odd field"><th class="field-name">Parameters:</th><td class="field-body"><ul class="first simple">
+<li><strong>image</strong> (<a class="reference external" href="https://docs.scipy.org/doc/numpy/reference/generated/numpy.ndarray.html#numpy.ndarray" title="(in NumPy v1.15)"><code class="xref py py-class docutils literal notranslate"><span class="pre">numpy.ndarray</span></code></a>) – A single electron diffraction signal. Should be appropriately scaled
+and centered.</li>
+<li><strong>pattern_dictrionary</strong> (<a class="reference external" href="https://docs.python.org/3/library/stdtypes.html#dict" title="(in Python v3.7)"><em>dict</em></a>) – <dl class="docutils">
+<dt>Containing:</dt>
+<dd><code class="xref py py-class docutils literal notranslate"><span class="pre">pyxem.DiffractionSimulation</span></code>
+The calibrated coords as ‘pixel_coords’,masked correctly
+The intensities as ‘intensities’, masked correctly</dd>
+</dl>
+</li>
+</ul>
+</td>
+</tr>
+<tr class="field-even field"><th class="field-name">Returns:</th><td class="field-body"><p class="first">A coefficient of correlation, unnormalised. This is in contrast to the
+reference work.</p>
+</td>
+</tr>
+<tr class="field-odd field"><th class="field-name">Return type:</th><td class="field-body"><p class="first last"><a class="reference external" href="https://docs.python.org/3/library/functions.html#float" title="(in Python v3.7)">float</a></p>
+</td>
+</tr>
+</tbody>
+</table>
+<p class="rubric">References</p>
+<ol class="upperalpha simple" start="5">
+<li>F. Rauch and L. Dupuy, “Rapid Diffraction Patterns identification through
+template matching,” vol. 50, no. 1, pp. 87–99, 2005.</li>
+</ol>
+</dd></dl>
+
+</div>
+</div>
+
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Copyright 2017-2018, Python Crystallographic Electron Microscopy.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>

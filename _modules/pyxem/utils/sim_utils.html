@@ -1,0 +1,414 @@
+<!DOCTYPE html>
+
+<html xmlns="http://www.w3.org/1999/xhtml">
+  <head>
+    <meta http-equiv="X-UA-Compatible" content="IE=Edge" />
+    <meta http-equiv="Content-Type" content="text/html; charset=utf-8" />
+    <title>pyxem.utils.sim_utils &#8212; pyXem 0.5.1 documentation</title>
+    <link rel="stylesheet" href="../../../_static/bootstrap-sphinx.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/pygments.css" type="text/css" />
+    <link rel="stylesheet" href="../../../_static/custom.css" type="text/css" />
+    <script type="text/javascript" id="documentation_options" data-url_root="../../../" src="../../../_static/documentation_options.js"></script>
+    <script type="text/javascript" src="../../../_static/jquery.js"></script>
+    <script type="text/javascript" src="../../../_static/underscore.js"></script>
+    <script type="text/javascript" src="../../../_static/doctools.js"></script>
+    <script type="text/javascript" src="https://cdnjs.cloudflare.com/ajax/libs/mathjax/2.7.1/MathJax.js?config=TeX-AMS-MML_HTMLorMML"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-1.11.0.min.js"></script>
+    <script type="text/javascript" src="../../../_static/js/jquery-fix.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-3.3.7/js/bootstrap.min.js"></script>
+    <script type="text/javascript" src="../../../_static/bootstrap-sphinx.js"></script>
+    <link rel="index" title="Index" href="../../../genindex.html" />
+    <link rel="search" title="Search" href="../../../search.html" />
+<meta charset='utf-8'>
+<meta http-equiv='X-UA-Compatible' content='IE=edge,chrome=1'>
+<meta name='viewport' content='width=device-width, initial-scale=1.0, maximum-scale=1'>
+<meta name="apple-mobile-web-app-capable" content="yes">
+
+  </head><body>
+
+  <div id="navbar" class="navbar navbar-default navbar-fixed-top">
+    <div class="container">
+      <div class="navbar-header">
+        <!-- .btn-navbar is used as the toggle for collapsed navbar content -->
+        <button type="button" class="navbar-toggle" data-toggle="collapse" data-target=".nav-collapse">
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+          <span class="icon-bar"></span>
+        </button>
+        <a class="navbar-brand" href="../../../index.html">
+          pyXem</a>
+        <span class="navbar-text navbar-version pull-left"><b>0.5.1</b></span>
+      </div>
+
+        <div class="collapse navbar-collapse nav-collapse">
+          <ul class="nav navbar-nav">
+            
+            
+              <li class="dropdown globaltoc-container">
+  <a role="button"
+     id="dLabelGlobalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="../../../index.html">Site <b class="caret"></b></a>
+  <ul class="dropdown-menu globaltoc"
+      role="menu"
+      aria-labelledby="dLabelGlobalToc"><ul>
+<li class="toctree-l1"><a class="reference internal" href="../../../introduction.html">Electron Diffraction - Signal Class</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../post_facto_imaging.html">Post-facto Imaging</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../contributing.html">Contributor Guide</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../bibliography.html">Bibliography</a></li>
+<li class="toctree-l1"><a class="reference internal" href="../../../modules.html">pyxem</a></li>
+</ul>
+</ul>
+</li>
+              
+                <li class="dropdown">
+  <a role="button"
+     id="dLabelLocalToc"
+     data-toggle="dropdown"
+     data-target="#"
+     href="#">Page <b class="caret"></b></a>
+  <ul class="dropdown-menu localtoc"
+      role="menu"
+      aria-labelledby="dLabelLocalToc"></ul>
+</li>
+              
+            
+            
+              
+                
+              
+            
+            
+            
+            
+              <li class="hidden-sm"></li>
+            
+          </ul>
+
+          
+            
+<form class="navbar-form navbar-right" action="../../../search.html" method="get">
+ <div class="form-group">
+  <input type="text" name="q" class="form-control" placeholder="Search" />
+ </div>
+  <input type="hidden" name="check_keywords" value="yes" />
+  <input type="hidden" name="area" value="default" />
+</form>
+          
+        </div>
+    </div>
+  </div>
+
+<div class="container">
+  <div class="row">
+    <div class="col-md-12 content">
+      
+  <h1>Source code for pyxem.utils.sim_utils</h1><div class="highlight"><pre>
+<span></span><span class="c1"># -*- coding: utf-8 -*-</span>
+<span class="c1"># Copyright 2017-2018 The pyXem developers</span>
+<span class="c1">#</span>
+<span class="c1"># This file is part of pyXem.</span>
+<span class="c1">#</span>
+<span class="c1"># pyXem is free software: you can redistribute it and/or modify</span>
+<span class="c1"># it under the terms of the GNU General Public License as published by</span>
+<span class="c1"># the Free Software Foundation, either version 3 of the License, or</span>
+<span class="c1"># (at your option) any later version.</span>
+<span class="c1">#</span>
+<span class="c1"># pyXem is distributed in the hope that it will be useful,</span>
+<span class="c1"># but WITHOUT ANY WARRANTY; without even the implied warranty of</span>
+<span class="c1"># MERCHANTABILITY or FITNESS FOR A PARTICULAR PURPOSE.  See the</span>
+<span class="c1"># GNU General Public License for more details.</span>
+<span class="c1">#</span>
+<span class="c1"># You should have received a copy of the GNU General Public License</span>
+<span class="c1"># along with pyXem.  If not, see &lt;http://www.gnu.org/licenses/&gt;.</span>
+
+<span class="kn">import</span> <span class="nn">itertools</span>
+<span class="kn">import</span> <span class="nn">math</span>
+<span class="kn">from</span> <span class="nn">decimal</span> <span class="k">import</span> <span class="n">Decimal</span><span class="p">,</span> <span class="n">ROUND_HALF_UP</span>
+<span class="kn">from</span> <span class="nn">math</span> <span class="k">import</span> <span class="n">radians</span><span class="p">,</span> <span class="n">sin</span>
+
+<span class="kn">import</span> <span class="nn">numpy</span> <span class="k">as</span> <span class="nn">np</span>
+<span class="kn">from</span> <span class="nn">scipy.constants</span> <span class="k">import</span> <span class="n">h</span><span class="p">,</span> <span class="n">m_e</span><span class="p">,</span> <span class="n">e</span><span class="p">,</span> <span class="n">c</span><span class="p">,</span> <span class="n">pi</span>
+<span class="kn">import</span> <span class="nn">os</span>
+<span class="kn">import</span> <span class="nn">collections</span>
+
+<span class="kn">from</span> <span class="nn">.atomic_scattering_params</span> <span class="k">import</span> <span class="n">ATOMIC_SCATTERING_PARAMS</span>
+
+<span class="kn">from</span> <span class="nn">pyxem.signals.electron_diffraction</span> <span class="k">import</span> <span class="n">ElectronDiffraction</span>
+
+
+<div class="viewcode-block" id="get_electron_wavelength"><a class="viewcode-back" href="../../../pyxem.utils.html#pyxem.utils.sim_utils.get_electron_wavelength">[docs]</a><span class="k">def</span> <span class="nf">get_electron_wavelength</span><span class="p">(</span><span class="n">accelerating_voltage</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the (relativistic) electron wavelength in Angstroms</span>
+<span class="sd">    for a given accelerating voltage in kV.</span>
+
+<span class="sd">    Evaluates</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    accelerating_voltage : float</span>
+<span class="sd">        The accelerating voltage in kV.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    wavelength : float</span>
+<span class="sd">        The relativistic electron wavelength in Angstroms.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">accelerating_voltage</span><span class="o">*</span><span class="mf">1e3</span>
+    <span class="n">wavelength</span> <span class="o">=</span> <span class="n">h</span> <span class="o">/</span> <span class="n">math</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">m_e</span> <span class="o">*</span> <span class="n">e</span> <span class="o">*</span> <span class="n">E</span> <span class="o">*</span>\
+                               <span class="p">(</span><span class="mi">1</span> <span class="o">+</span> <span class="p">(</span><span class="n">e</span> <span class="o">/</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">m_e</span> <span class="o">*</span> <span class="n">c</span> <span class="o">*</span> <span class="n">c</span><span class="p">))</span> <span class="o">*</span> <span class="n">E</span><span class="p">))</span><span class="o">*</span><span class="mf">1e10</span>
+    <span class="k">return</span> <span class="n">wavelength</span></div>
+
+
+<div class="viewcode-block" id="get_interaction_constant"><a class="viewcode-back" href="../../../pyxem.utils.html#pyxem.utils.sim_utils.get_interaction_constant">[docs]</a><span class="k">def</span> <span class="nf">get_interaction_constant</span><span class="p">(</span><span class="n">accelerating_voltage</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates the interaction constant, sigma, for a given</span>
+<span class="sd">    acelerating voltage.</span>
+
+<span class="sd">    Evaluates</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    accelerating_voltage : float</span>
+<span class="sd">        The accelerating voltage in V.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    sigma : float</span>
+<span class="sd">        The relativistic electron wavelength in m.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="n">E</span> <span class="o">=</span> <span class="n">accelerating_voltage</span>
+    <span class="n">wavelength</span> <span class="o">=</span> <span class="n">get_electron_wavelength</span><span class="p">(</span><span class="n">accelerating_voltage</span><span class="p">)</span>
+    <span class="n">sigma</span> <span class="o">=</span> <span class="p">(</span><span class="mi">2</span> <span class="o">*</span> <span class="n">pi</span> <span class="o">*</span> <span class="p">(</span><span class="n">m_e</span> <span class="o">+</span> <span class="n">e</span> <span class="o">*</span> <span class="n">E</span><span class="p">))</span>
+
+    <span class="k">return</span> <span class="n">sigma</span></div>
+
+
+<div class="viewcode-block" id="get_unique_families"><a class="viewcode-back" href="../../../pyxem.utils.html#pyxem.utils.sim_utils.get_unique_families">[docs]</a><span class="k">def</span> <span class="nf">get_unique_families</span><span class="p">(</span><span class="n">hkls</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;</span>
+<span class="sd">    Returns unique families of Miller indices, which must be permutations</span>
+<span class="sd">    of each other.</span>
+
+<span class="sd">    Args:</span>
+<span class="sd">        hkls ([h, k, l]): List of Miller indices.</span>
+
+<span class="sd">    Returns:</span>
+<span class="sd">        {hkl: multiplicity}: A dict with unique hkl and multiplicity.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="k">def</span> <span class="nf">is_perm</span><span class="p">(</span><span class="n">hkl1</span><span class="p">,</span> <span class="n">hkl2</span><span class="p">):</span>
+        <span class="n">h1</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">hkl1</span><span class="p">)</span>
+        <span class="n">h2</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(</span><span class="n">hkl2</span><span class="p">)</span>
+        <span class="k">return</span> <span class="nb">all</span><span class="p">([</span><span class="n">i</span> <span class="o">==</span> <span class="n">j</span> <span class="k">for</span> <span class="n">i</span><span class="p">,</span> <span class="n">j</span> <span class="ow">in</span> <span class="nb">zip</span><span class="p">(</span><span class="nb">sorted</span><span class="p">(</span><span class="n">h1</span><span class="p">),</span> <span class="nb">sorted</span><span class="p">(</span><span class="n">h2</span><span class="p">))])</span>
+
+    <span class="n">unique</span> <span class="o">=</span> <span class="n">collections</span><span class="o">.</span><span class="n">defaultdict</span><span class="p">(</span><span class="nb">list</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">hkl1</span> <span class="ow">in</span> <span class="n">hkls</span><span class="p">:</span>
+        <span class="n">found</span> <span class="o">=</span> <span class="kc">False</span>
+        <span class="k">for</span> <span class="n">hkl2</span> <span class="ow">in</span> <span class="n">unique</span><span class="o">.</span><span class="n">keys</span><span class="p">():</span>
+            <span class="k">if</span> <span class="n">is_perm</span><span class="p">(</span><span class="n">hkl1</span><span class="p">,</span> <span class="n">hkl2</span><span class="p">):</span>
+                <span class="n">found</span> <span class="o">=</span> <span class="kc">True</span>
+                <span class="n">unique</span><span class="p">[</span><span class="n">hkl2</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hkl1</span><span class="p">)</span>
+                <span class="k">break</span>
+        <span class="k">if</span> <span class="ow">not</span> <span class="n">found</span><span class="p">:</span>
+            <span class="n">unique</span><span class="p">[</span><span class="n">hkl1</span><span class="p">]</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">hkl1</span><span class="p">)</span>
+
+    <span class="n">pretty_unique</span> <span class="o">=</span> <span class="p">{}</span>
+    <span class="k">for</span> <span class="n">k</span><span class="p">,</span> <span class="n">v</span> <span class="ow">in</span> <span class="n">unique</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+        <span class="n">pretty_unique</span><span class="p">[</span><span class="nb">sorted</span><span class="p">(</span><span class="n">v</span><span class="p">)[</span><span class="o">-</span><span class="mi">1</span><span class="p">]]</span> <span class="o">=</span> <span class="nb">len</span><span class="p">(</span><span class="n">v</span><span class="p">)</span>
+
+    <span class="k">return</span> <span class="n">pretty_unique</span></div>
+
+
+<div class="viewcode-block" id="get_kinematical_intensities"><a class="viewcode-back" href="../../../pyxem.utils.html#pyxem.utils.sim_utils.get_kinematical_intensities">[docs]</a><span class="k">def</span> <span class="nf">get_kinematical_intensities</span><span class="p">(</span><span class="n">structure</span><span class="p">,</span>
+                                <span class="n">g_indices</span><span class="p">,</span>
+                                <span class="n">g_hkls</span><span class="p">,</span>
+                                <span class="n">excitation_error</span><span class="p">,</span>
+                                <span class="n">maximum_excitation_error</span><span class="p">,</span>
+                                <span class="n">debye_waller_factors</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Calculates peak intensities.</span>
+
+<span class="sd">    The peak intensity is a combination of the structure factor for a given</span>
+<span class="sd">    peak and the position the Ewald sphere intersects the relrod. In this</span>
+<span class="sd">    implementation, the intensity scales linearly with proximity.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    structure : Structure</span>
+<span class="sd">        The structure for which to derive the structure factors.</span>
+<span class="sd">    indices : array-like</span>
+<span class="sd">        The fractional coordinates of the peaks for which to calculate the</span>
+<span class="sd">        structure factor.</span>
+<span class="sd">    proximities : array-like</span>
+<span class="sd">        The distances between the Ewald sphere and the peak centres.</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    peak_intensities : array-like</span>
+<span class="sd">        The intensities of the peaks.</span>
+
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1"># Create a flattened array of zs, coeffs, fcoords and occus for vectorized</span>
+    <span class="c1"># computation of atomic scattering factors later. Note that these are not</span>
+    <span class="c1"># necessarily the same size as the structure as each partially occupied</span>
+    <span class="c1"># specie occupies its own position in the flattened array.</span>
+    <span class="n">zs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">coeffs</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">fcoords</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">occus</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="n">dwfactors</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">site</span> <span class="ow">in</span> <span class="n">structure</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">sp</span><span class="p">,</span> <span class="n">occu</span> <span class="ow">in</span> <span class="n">site</span><span class="o">.</span><span class="n">species_and_occu</span><span class="o">.</span><span class="n">items</span><span class="p">():</span>
+            <span class="n">zs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">Z</span><span class="p">)</span>
+            <span class="k">try</span><span class="p">:</span>
+                <span class="n">c</span> <span class="o">=</span> <span class="n">ATOMIC_SCATTERING_PARAMS</span><span class="p">[</span><span class="n">sp</span><span class="o">.</span><span class="n">symbol</span><span class="p">]</span>
+            <span class="k">except</span> <span class="ne">KeyError</span><span class="p">:</span>
+                <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;Unable to calculate ED pattern as &quot;</span>
+                                 <span class="s2">&quot;there is no scattering coefficients for&quot;</span>
+                                 <span class="s2">&quot; </span><span class="si">%s</span><span class="s2">.&quot;</span> <span class="o">%</span> <span class="n">sp</span><span class="o">.</span><span class="n">symbol</span><span class="p">)</span>
+            <span class="n">coeffs</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">c</span><span class="p">)</span>
+            <span class="n">dwfactors</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">debye_waller_factors</span><span class="o">.</span><span class="n">get</span><span class="p">(</span><span class="n">sp</span><span class="o">.</span><span class="n">symbol</span><span class="p">,</span> <span class="mi">0</span><span class="p">))</span>
+            <span class="n">fcoords</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">site</span><span class="o">.</span><span class="n">frac_coords</span><span class="p">)</span>
+            <span class="n">occus</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">occu</span><span class="p">)</span>
+    <span class="n">zs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">zs</span><span class="p">)</span>
+    <span class="n">coeffs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">coeffs</span><span class="p">)</span>
+    <span class="n">fcoords</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fcoords</span><span class="p">)</span>
+    <span class="n">occus</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">occus</span><span class="p">)</span>
+    <span class="n">dwfactors</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">dwfactors</span><span class="p">)</span>
+
+    <span class="c1"># Store array of s^2 values since used multiple times.</span>
+    <span class="n">s2s</span> <span class="o">=</span> <span class="p">(</span><span class="n">g_hkls</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="c1"># Create array containing atomic scattering factors.</span>
+    <span class="n">fss</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">s2</span> <span class="ow">in</span> <span class="n">s2s</span><span class="p">:</span>
+        <span class="n">fs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">coeffs</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">coeffs</span><span class="p">[:,</span> <span class="p">:,</span> <span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">s2</span><span class="p">),</span> <span class="n">axis</span><span class="o">=</span><span class="mi">1</span><span class="p">)</span>
+        <span class="n">fss</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">fs</span><span class="p">)</span>
+    <span class="n">fss</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">fss</span><span class="p">)</span>
+
+    <span class="c1"># Calculate structure factors for all excited g-vectors.</span>
+    <span class="n">f_hkls</span> <span class="o">=</span> <span class="p">[]</span>
+    <span class="k">for</span> <span class="n">n</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="nb">len</span><span class="p">(</span><span class="n">g_indices</span><span class="p">)):</span>
+        <span class="n">g</span> <span class="o">=</span> <span class="n">g_indices</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">fs</span> <span class="o">=</span> <span class="n">fss</span><span class="p">[</span><span class="n">n</span><span class="p">]</span>
+        <span class="n">dw_correction</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">dwfactors</span> <span class="o">*</span> <span class="n">s2s</span><span class="p">[</span><span class="n">n</span><span class="p">])</span>
+        <span class="n">f_hkl</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">sum</span><span class="p">(</span><span class="n">fs</span> <span class="o">*</span> <span class="n">occus</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="mi">2</span><span class="n">j</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">fcoords</span><span class="p">,</span> <span class="n">g</span><span class="p">))</span>
+                       <span class="o">*</span> <span class="n">dw_correction</span><span class="p">)</span>
+        <span class="n">f_hkls</span><span class="o">.</span><span class="n">append</span><span class="p">(</span><span class="n">f_hkl</span><span class="p">)</span>
+    <span class="n">f_hkls</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">f_hkls</span><span class="p">)</span>
+
+    <span class="c1"># Define an intensity scaling that is linear with distance from Ewald sphere</span>
+    <span class="c1"># along the beam direction.</span>
+    <span class="n">shape_factor</span> <span class="o">=</span> <span class="mi">1</span> <span class="o">-</span> <span class="p">(</span><span class="n">excitation_error</span> <span class="o">/</span> <span class="n">maximum_excitation_error</span><span class="p">)</span>
+
+    <span class="c1"># Calculate the peak intensities from the structure factor and excitation</span>
+    <span class="c1"># error.</span>
+    <span class="n">peak_intensities</span> <span class="o">=</span> <span class="p">(</span><span class="n">f_hkls</span> <span class="o">*</span> <span class="n">f_hkls</span><span class="o">.</span><span class="n">conjugate</span><span class="p">())</span><span class="o">.</span><span class="n">real</span> <span class="o">*</span> <span class="n">shape_factor</span>
+    <span class="k">return</span> <span class="n">peak_intensities</span></div>
+
+
+<div class="viewcode-block" id="simulate_kinematic_scattering"><a class="viewcode-back" href="../../../pyxem.utils.html#pyxem.utils.sim_utils.simulate_kinematic_scattering">[docs]</a><span class="k">def</span> <span class="nf">simulate_kinematic_scattering</span><span class="p">(</span><span class="n">atomic_coordinates</span><span class="p">,</span>
+                                  <span class="n">element</span><span class="p">,</span>
+                                  <span class="n">accelerating_voltage</span><span class="p">,</span>
+                                  <span class="n">simulation_size</span><span class="o">=</span><span class="mi">256</span><span class="p">,</span>
+                                  <span class="n">max_k</span> <span class="o">=</span> <span class="mf">1.5</span><span class="p">,</span>
+                                  <span class="n">illumination</span> <span class="o">=</span> <span class="s1">&#39;plane_wave&#39;</span><span class="p">,</span>
+                                  <span class="n">sigma</span> <span class="o">=</span> <span class="mi">20</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot;Simulate electron scattering from arrangement of atoms comprising one</span>
+<span class="sd">    elemental species.</span>
+
+<span class="sd">    Parameters</span>
+<span class="sd">    ----------</span>
+<span class="sd">    atomic_coordinates : array</span>
+<span class="sd">        Array specifying atomic coordinates in structure.</span>
+<span class="sd">    element : string</span>
+<span class="sd">        Element symbol, e.g. &quot;C&quot;.</span>
+<span class="sd">    accelerating_voltage : float</span>
+<span class="sd">        Accelerating voltage in keV.</span>
+<span class="sd">    simulation_size : int</span>
+<span class="sd">        Simulation size, n, specifies the n x n array size for</span>
+<span class="sd">        the simulation calculation.</span>
+<span class="sd">    max_k : float</span>
+<span class="sd">        Maximum scattering vector magnitude in reciprocal angstroms.</span>
+<span class="sd">    illumination = string</span>
+<span class="sd">        Either &#39;plane_wave&#39; or &#39;gaussian_probe&#39; illumination</span>
+
+<span class="sd">    Returns</span>
+<span class="sd">    -------</span>
+<span class="sd">    simulation : ElectronDiffraction</span>
+<span class="sd">        ElectronDiffraction simulation.</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+    <span class="c1">#Get atomic scattering parameters for specified element.</span>
+    <span class="n">c</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">(</span><span class="n">ATOMIC_SCATTERING_PARAMS</span><span class="p">[</span><span class="n">element</span><span class="p">])</span>
+    <span class="c1">#Calculate electron wavelength for given keV.</span>
+    <span class="n">wavelength</span> <span class="o">=</span> <span class="n">get_electron_wavelength</span><span class="p">(</span><span class="n">accelerating_voltage</span><span class="p">)</span>
+
+    <span class="c1">#Define a 2D array of k-vectors at which to evaluate scattering.</span>
+    <span class="n">l</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">linspace</span><span class="p">(</span><span class="o">-</span><span class="n">max_k</span><span class="p">,</span> <span class="n">max_k</span><span class="p">,</span> <span class="n">simulation_size</span><span class="p">)</span>
+    <span class="n">kx</span><span class="p">,</span> <span class="n">ky</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">meshgrid</span><span class="p">(</span><span class="n">l</span><span class="p">,</span> <span class="n">l</span><span class="p">)</span>
+
+    <span class="c1">#Convert 2D k-vectors into 3D k-vectors accounting for Ewald sphere.</span>
+    <span class="n">k</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">array</span><span class="p">((</span><span class="n">kx</span><span class="p">,</span> <span class="n">ky</span><span class="p">,</span> <span class="p">(</span><span class="n">wavelength</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">*</span> <span class="p">(</span><span class="n">kx</span> <span class="o">**</span> <span class="mi">2</span> <span class="o">+</span> <span class="n">ky</span> <span class="o">**</span><span class="mi">2</span><span class="p">)))</span>
+
+    <span class="c1">#Calculate scatering angle squared for each k-vector.</span>
+    <span class="n">s2s</span> <span class="o">=</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">linalg</span><span class="o">.</span><span class="n">norm</span><span class="p">(</span><span class="n">k</span><span class="p">,</span> <span class="n">axis</span><span class="o">=</span><span class="mi">0</span><span class="p">)</span> <span class="o">/</span> <span class="mi">2</span><span class="p">)</span> <span class="o">**</span> <span class="mi">2</span>
+
+    <span class="c1">#Evaluate atomic scattering factor.</span>
+    <span class="n">fs</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">s2s</span><span class="p">)</span>
+    <span class="k">for</span> <span class="n">i</span> <span class="ow">in</span> <span class="n">np</span><span class="o">.</span><span class="n">arange</span><span class="p">(</span><span class="mi">4</span><span class="p">):</span>
+        <span class="n">fs</span> <span class="o">=</span> <span class="n">fs</span> <span class="o">+</span> <span class="p">(</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">0</span><span class="p">]</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="o">-</span><span class="n">c</span><span class="p">[</span><span class="n">i</span><span class="p">][</span><span class="mi">1</span><span class="p">]</span> <span class="o">*</span> <span class="n">s2s</span><span class="p">))</span>
+
+    <span class="c1">#Evaluate scattering from all atoms</span>
+    <span class="n">scattering</span> <span class="o">=</span> <span class="n">np</span><span class="o">.</span><span class="n">zeros_like</span><span class="p">(</span><span class="n">s2s</span><span class="p">)</span>
+    <span class="k">if</span> <span class="n">illumination</span> <span class="o">==</span> <span class="s1">&#39;plane_wave&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">atomic_coordinates</span><span class="p">:</span>
+            <span class="n">scattering</span> <span class="o">=</span> <span class="n">scattering</span> <span class="o">+</span> <span class="p">(</span><span class="n">fs</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">2</span><span class="n">j</span><span class="p">))</span>
+    <span class="k">if</span> <span class="n">illumination</span> <span class="o">==</span> <span class="s1">&#39;gaussian_probe&#39;</span><span class="p">:</span>
+        <span class="k">for</span> <span class="n">r</span> <span class="ow">in</span> <span class="n">atomic_coordinates</span><span class="p">:</span>
+            <span class="n">probe</span> <span class="o">=</span> <span class="p">(</span><span class="mi">1</span> <span class="o">/</span> <span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">sqrt</span><span class="p">(</span><span class="mi">2</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">pi</span><span class="p">)</span><span class="o">*</span><span class="n">sigma</span><span class="p">))</span><span class="o">*</span><span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">((</span><span class="o">-</span><span class="n">np</span><span class="o">.</span><span class="n">abs</span><span class="p">(((</span><span class="n">r</span><span class="p">[</span><span class="mi">0</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">)</span> <span class="o">-</span> <span class="p">(</span><span class="n">r</span><span class="p">[</span><span class="mi">1</span><span class="p">]</span><span class="o">**</span><span class="mi">2</span><span class="p">))))</span><span class="o">/</span><span class="p">(</span><span class="mi">4</span><span class="o">*</span><span class="n">sigma</span><span class="o">**</span><span class="mi">2</span><span class="p">))</span>
+            <span class="n">scattering</span> <span class="o">=</span> <span class="n">scattering</span> <span class="o">+</span> <span class="p">(</span><span class="n">probe</span> <span class="o">*</span> <span class="n">fs</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">exp</span><span class="p">(</span><span class="n">np</span><span class="o">.</span><span class="n">dot</span><span class="p">(</span><span class="n">k</span><span class="o">.</span><span class="n">T</span><span class="p">,</span> <span class="n">r</span><span class="p">)</span> <span class="o">*</span> <span class="n">np</span><span class="o">.</span><span class="n">pi</span> <span class="o">*</span> <span class="mi">2</span><span class="n">j</span><span class="p">))</span>
+    <span class="k">else</span><span class="p">:</span>
+        <span class="k">raise</span> <span class="ne">ValueError</span><span class="p">(</span><span class="s2">&quot;User specified illumination not defined.&quot;</span><span class="p">)</span>
+
+    <span class="c1">#Calculate intensity</span>
+    <span class="n">intensity</span>  <span class="o">=</span> <span class="p">(</span><span class="n">scattering</span> <span class="o">*</span> <span class="n">scattering</span><span class="o">.</span><span class="n">conjugate</span><span class="p">())</span><span class="o">.</span><span class="n">real</span>
+
+    <span class="k">return</span> <span class="n">ElectronDiffraction</span><span class="p">(</span><span class="n">intensity</span><span class="p">)</span></div>
+
+
+<div class="viewcode-block" id="peaks_from_best_template"><a class="viewcode-back" href="../../../pyxem.utils.html#pyxem.utils.sim_utils.peaks_from_best_template">[docs]</a><span class="k">def</span> <span class="nf">peaks_from_best_template</span><span class="p">(</span><span class="n">single_match_result</span><span class="p">,</span><span class="n">phase</span><span class="p">,</span><span class="n">library</span><span class="p">):</span>
+    <span class="sd">&quot;&quot;&quot; Takes a match_result object and return the associated peaks, to be used with</span>
+<span class="sd">    in combination with map.</span>
+
+<span class="sd">    Example : peaks= match_results.map(peaks_from_best_template,phase=phase,library=library)</span>
+
+<span class="sd">    phase : list</span>
+<span class="sd">        of keys to library, should be the same as passed to IndexationGenerator.correlate()</span>
+
+<span class="sd">    library : nested dictionary containing keys of [phase][rotation]</span>
+<span class="sd">    &quot;&quot;&quot;</span>
+
+    <span class="n">best_fit</span> <span class="o">=</span> <span class="n">single_match_result</span><span class="p">[</span><span class="n">np</span><span class="o">.</span><span class="n">argmax</span><span class="p">(</span><span class="n">single_match_result</span><span class="p">[:,</span><span class="mi">4</span><span class="p">])]</span>
+    <span class="n">_phase</span> <span class="o">=</span> <span class="n">phase</span><span class="p">[</span><span class="nb">int</span><span class="p">(</span><span class="n">best_fit</span><span class="p">[</span><span class="mi">0</span><span class="p">])]</span>
+    <span class="n">pattern</span> <span class="o">=</span> <span class="n">library</span><span class="p">[</span><span class="n">_phase</span><span class="p">][</span><span class="n">best_fit</span><span class="p">[</span><span class="mi">1</span><span class="p">],</span><span class="n">best_fit</span><span class="p">[</span><span class="mi">2</span><span class="p">],</span><span class="n">best_fit</span><span class="p">[</span><span class="mi">3</span><span class="p">]][</span><span class="s1">&#39;Sim&#39;</span><span class="p">]</span>
+    <span class="n">peaks</span> <span class="o">=</span> <span class="n">pattern</span><span class="o">.</span><span class="n">coordinates</span><span class="p">[:,:</span><span class="mi">2</span><span class="p">]</span> <span class="c1">#cut z</span>
+    <span class="k">return</span> <span class="n">peaks</span></div>
+</pre></div>
+
+    </div>
+      
+  </div>
+</div>
+<footer class="footer">
+  <div class="container">
+    <p class="pull-right">
+      <a href="#">Back to top</a>
+      
+    </p>
+    <p>
+        &copy; Copyright Copyright 2017-2018, Python Crystallographic Electron Microscopy.<br/>
+      Created using <a href="http://sphinx-doc.org/">Sphinx</a> 1.7.6.<br/>
+    </p>
+  </div>
+</footer>
+  </body>
+</html>
